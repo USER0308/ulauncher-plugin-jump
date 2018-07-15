@@ -1,0 +1,4 @@
+/home 1
+/home/user0308 3
+/ 2
+/root 4
