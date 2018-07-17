@@ -10,11 +10,11 @@
     },
   "preferences": [
       {
-	        "id": "mp_kw",
+	        "id": "jump_kw",
 	        "type": "keyword",
-	        "name": "mp",
+	        "name": "jump",
 	        "description": "jump in the file system",
-	        "default_value": "mp"
+	        "default_value": "jump"
 	      }
     ]
 }
