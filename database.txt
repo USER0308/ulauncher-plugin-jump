@@ -1,4 +1,4 @@
-/home 1
-/home/user0308 3
+/home 8
+/home/user0308 6
 / 2
 /root 4

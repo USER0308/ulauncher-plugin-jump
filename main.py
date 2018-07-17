@@ -6,6 +6,8 @@ from ulauncher.api.shared.action.RenderResultListAction import RenderResultListA
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.action.OpenAction import OpenAction
 
+from list_choice import List_choice
+
 class JumpExtension(Extension):
 
     def __init__(self):
@@ -17,9 +19,11 @@ class KeywordQueryEventListener(EventListener):
 
     def on_event(self, event, extension):
         path = event.get_argument()
+        query_result = List_choice().get_top_five(path)
         items = []
-        items.append(ExtensionResultItem(icon='images/icon.png',
-                                             name='jump to ',
+        for i in range(len(query_result)):
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='jump to %s' % query_result[i],
                                              description='jump to here and open in file',
                                              on_enter=OpenAction(path)))
 #        for i in range(5):
