@@ -12,7 +12,7 @@ class List_choice():
         '''check the path exists'''
         if not os.path.exists(database_path):
             #logger.warn('database.txt not exists, creating')
-            print "database.txt not exists, creating"
+            print "%s not exists, creating" % database_path
             f = open(database_path,"w")
             f.close()
             #logger.info('create database.txt')
@@ -20,29 +20,34 @@ class List_choice():
 
     def get_top_five(self,path):
         '''get the top five most frequency path'''
+        print "calling get top five"
         database_path = "database.txt"
+        print "current path is %s " % os.getcwd()
         self.check_exist(database_path)
         f = open(database_path,'r')  # open for read
-        items = []
+        print f
+        records = []
         for line in f:
+            print "lines are %s in database" % line
             line=line.strip('\n')
             record_list = line.split(" ")
-            items.append(record_list)
+            records.append(record_list)
         f.close()
-        #print items
+        print records
         #logger.debug('database.txt content is:===================')
-        #for item in items:
-        #    print item[0],item[1]
+        for record in records:
+            print record[0],record[1]
 
         # check if path exists
         contain_records = []
-        for item in items:
-            if path in item[0]:
+        for record in records:
+            if path in record[0]:
                 #logger.debug('find a record')
-                contain_records.append(item)
+                contain_records.append(record)
 
         # sort the record and take the first five
         contain_records = sorted(contain_records, key=lambda x:x[1], reverse = True)
+        print contain_records
         #logger.debug('first five are:')
         end_point = 5 if len(contain_records)>=5 else len(contain_records)
         for i in range(0,end_point):
@@ -77,8 +82,9 @@ class List_choice():
         write_file.close()
         os.remove(database_path)
         os.rename(tmp_path,database_path)
+        print "write path finish"
 
 
 if __name__ == '__main__':
-#    List_choice().get_top_five('/home')
+    List_choice().get_top_five('/home')
     List_choice().write_path('/home')
