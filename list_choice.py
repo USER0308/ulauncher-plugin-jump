@@ -1,6 +1,6 @@
 import logging
 import os
-
+import getpass
 # logger = logging.getLogger()
 
 
@@ -8,8 +8,9 @@ import os
 class List_choice():
     '''List the most frequency used location in file system'''
 
+    username = getpass.getuser()
     # database_path = "database.txt"
-    database_path = "/home/user0308/.cache/ulauncher_cache/extensions/com.github.user0308.ulauncher-plugin-jump/database.txt"
+    database_path = "/home/" + username + "/.cache/ulauncher_cache/extensions/com.github.user0308.ulauncher-plugin-jump/database.txt"
 
     def check_exist(self,database_path):
         '''check the path exists'''
