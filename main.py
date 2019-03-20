@@ -26,9 +26,14 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         path = event.get_argument()
         print "path is %s " % path
-        query_result = List_choice().get_top_five(path)
         items = []
+		items.append(ExtensionResultItem(icon='images/icon.png',
+                                            name='jump to %s' % path,
+                                            description='jump to here and open in file',
+                                            on_enter=ExtensionCustomAction(path)))
 
+
+        query_result = List_choice().get_top_five(path)
         # if path is a new one,so result return
         if len(query_result) != 0:
             for i in range(len(query_result)):
